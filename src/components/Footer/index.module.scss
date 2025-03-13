@@ -1,0 +1,104 @@
+$darkGreen: #2a8439;
+
+:global(body) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+:global(#root) {
+  flex: 1 0 auto;
+}
+
+.footer {
+  background-color: var(--color-light-green);
+  color: white;
+  padding: 3rem 0;
+  flex-shrink: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 0 1.5rem;
+    gap: 2rem;
+  }
+}
+
+.section {
+  flex: 1;
+  padding: 0 1.5rem;
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+}
+
+.heading {
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+  font-weight: normal;
+}
+
+.text {
+  line-height: 1.5;
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+}
+
+.form {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.input {
+  flex-grow: 1;
+  padding: 0.75rem;
+  border: none;
+  font-size: 0.95rem;
+}
+
+.button {
+  background-color: $darkGreen;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $darkGreen;
+  }
+}
+
+.contact {
+  p {
+    margin: 0.5rem 0;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
