@@ -16,7 +16,7 @@ export default function useSession() {
       return await ky
         .get('users', {
           headers: {
-            Authorization: `Bearer ${json.access_token})}`,
+            Authorization: `Bearer ${json.access_token}`,
           },
         })
         .json<{ data: User & { products: any[] } }>()

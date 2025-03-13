@@ -2,7 +2,7 @@ import Spinner from '@/components/Spinner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useMutation } from '@tanstack/react-query'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { z } from 'zod'
 import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -127,9 +127,9 @@ function RouteComponent() {
           <div className='mt-2'>
             <p>
               Har du allerede en konto hos os?{' '}
-              <a href='#' className='text-green-600'>
+              <Link to='/login' className='text-green-600'>
                 Klik her
-              </a>{' '}
+              </Link>{' '}
               for at vende tilbage til login
             </p>
           </div>

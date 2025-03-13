@@ -1,9 +1,9 @@
-import { MailWarning, Info, User } from 'lucide-react'
+import { MailWarning, Info, User, LogIn } from 'lucide-react'
 import { Button } from './ui/button'
-import { useNavigate } from '@tanstack/react-router'
-import { useQuery } from '@tanstack/react-query'
-import { GetCategories } from '@/lib/api'
+import { Link, useNavigate } from '@tanstack/react-router'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select'
+import useSession from '@/hooks/useSession'
+import useCategories from '@/hooks/useCategories'
 
 function NavbarLogo() {
   const navigate = useNavigate()
@@ -17,13 +17,8 @@ function NavbarLogo() {
 }
 
 export default function Navbar() {
-  const categories = useQuery({
-    queryKey: ['categories'],
-    queryFn: async () => {
-      const res = await GetCategories()
-      return res
-    },
-  })
+  const categories = useCategories()
+  const session = useSession()
 
   return (
     <>
@@ -51,16 +46,26 @@ export default function Navbar() {
 
             <Button variant='lightGreen'>opret annonce</Button>
 
-            <div className='flex space-x-6 ml-4'>
+            <div className='flex items-center space-x-6 ml-4'>
               <button>
                 <MailWarning size={20} />
               </button>
               <button>
                 <Info size={20} />
               </button>
-              <button>
-                <User size={20} />
-              </button>
+              {session.data && !session.isLoading && !session.isError ? (
+                <Link to='/me'>
+                  <button>
+                    <User size={20} />
+                  </button>
+                </Link>
+              ) : (
+                <Link to='/login'>
+                  <button>
+                    <LogIn size={20} />
+                  </button>
+                </Link>
+              )}
             </div>
           </div>
         </div>

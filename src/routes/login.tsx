@@ -2,10 +2,11 @@ import Spinner from '@/components/Spinner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useMutation } from '@tanstack/react-query'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { z } from 'zod'
 import ky from '@/lib/ky'
 import toast from 'react-hot-toast'
+import { Label } from '@/components/ui/label'
 
 export interface User {
   id: string
@@ -42,9 +43,8 @@ const fields = [
 function RouteComponent() {
   const navigate = Route.useNavigate()
 
-  const RegisterMutation = useMutation({
+  const LoginMutation = useMutation({
     mutationFn: async (data: LoginSchema) => {
-      // body is url encoded
       const { data: userData, success } = await LoginSchema.safeParseAsync(data)
       if (!success) throw new Error('Invalid data')
 
@@ -73,20 +73,35 @@ function RouteComponent() {
     const formData = new FormData(event.currentTarget)
     const data = Object.fromEntries(formData) as LoginSchema
     console.log(data)
-    RegisterMutation.mutate(data)
+    LoginMutation.mutate(data)
   }
 
   return (
     <>
       <form className='flex flex-col items-center justify-center h-screen' onSubmit={submit}>
-        <div className='grid grid-cols-1 gap-6'>
+        <h2 className='text-2xl mb-4'>Velkommen tilbage</h2>
+        <div className='grid grid-cols-1 gap-4 max-w-md'>
           {fields.map((field) => (
-            <Input key={field.name} type={field.type} name={field.name} placeholder={field.placeholder} />
+            <div key={field.name} className='mb-3'>
+              <Label htmlFor={field.name} className='block mb-1'>
+                {field.label}
+              </Label>
+              <Input key={field.name} id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} className='w-full p-2 e rounded' />
+            </div>
           ))}
+
+          <div className='mt-2'>
+            <p className='text-sm text-gray-600'>
+              Har du ikke en konto?{' '}
+              <Link to='/register' className='text-blue-500 hover:underline'>
+                Opret en her
+              </Link>
+            </p>
+          </div>
         </div>
 
-        <Button variant='darkGreen' type='submit' disabled={RegisterMutation.isPending}>
-          {RegisterMutation.isPending ? <Spinner /> : 'Login'}
+        <Button variant='darkGreen' type='submit' disabled={LoginMutation.isPending} className='bg-green-600 text-white px-4 py-2 rounded'>
+          {LoginMutation.isPending ? <Spinner /> : 'Login'}
         </Button>
       </form>
     </>
