@@ -4,6 +4,8 @@ import { Input } from '@/components/ui/input'
 import { useMutation } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import { z } from 'zod'
+import { Label } from '@/components/ui/label'
+import { Checkbox } from '@/components/ui/checkbox'
 import ky from '@/lib/ky'
 import toast from 'react-hot-toast'
 
@@ -111,13 +113,40 @@ function RouteComponent() {
   return (
     <>
       <form className='flex flex-col items-center justify-center h-screen' onSubmit={submit}>
-        <div className='grid grid-cols-1 gap-6'>
+        <h2 className='text-2xl mb-4'>Opret en konto</h2>
+        <div className='grid grid-cols-1 gap-4 max-w-md'>
           {fields.map((field) => (
-            <Input key={field.name} type={field.type} name={field.name} placeholder={field.placeholder} />
+            <div key={field.name} className='mb-3'>
+              <Label htmlFor={field.name} className='block mb-1'>
+                {field.label}
+              </Label>
+              <Input key={field.name} id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} className='w-full p-2 e rounded' />
+            </div>
           ))}
+
+          <div className='mt-2'>
+            <p>
+              Har du allerede en konto hos os?{' '}
+              <a href='#' className='text-green-600'>
+                Klik her
+              </a>{' '}
+              for at vende tilbage til login
+            </p>
+          </div>
+
+          <div className='flex items-center mt-3 mb-4'>
+            <Checkbox id='terms' className='mr-2' />
+            <label htmlFor='terms' className='text-sm'>
+              Jeg har læst og forstået de{' '}
+              <a href='#' className='text-green-600'>
+                gældende betingelser
+              </a>{' '}
+              for oprettelse af kundekonto og brug af denne side
+            </label>
+          </div>
         </div>
 
-        <Button variant='darkGreen' type='submit' disabled={RegisterMutation.isPending}>
+        <Button variant='darkGreen' type='submit' disabled={RegisterMutation.isPending} className='bg-green-600 text-white px-4 py-2 rounded'>
           {RegisterMutation.isPending ? <Spinner /> : 'Opret'}
         </Button>
       </form>

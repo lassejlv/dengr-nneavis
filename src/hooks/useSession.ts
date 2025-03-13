@@ -11,6 +11,8 @@ export default function useSession() {
 
       if (!json.access_token) return null
 
+      console.log(json)
+
       return await ky
         .get('users', {
           headers: {

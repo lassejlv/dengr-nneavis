@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styles from './index.module.scss'
 import { Input } from '../ui/input'
+import { Button } from '../ui/button'
 
 export default function Footer() {
   const [email, setEmail] = useState('')
@@ -16,14 +17,12 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.section}>
           <h2 className={styles.heading}>Nyhedsbrev</h2>
-          <p className={styles.text}>
-            Vil du være med på den grønne front? Tilmeld dig vores nyhedsbrev og få de seneste klima opdateringer direkte i din indbakke.
-          </p>
+          <p className={styles.text}>Vil du være med på den grønne front? Tilmeld dig vores nyhedsbrev og få de seneste klima opdateringer direkte i din indbakke.</p>
           <form className={styles.form} onSubmit={handleSubmit}>
             <Input type='email' value={email} onChange={(e) => setEmail(e.target.value)} aria-label='Email for newsletter' required />
-            <button type='submit' className={styles.button}>
+            <Button type='submit' className={styles.button}>
               Tilmeld
-            </button>
+            </Button>
           </form>
         </div>
 

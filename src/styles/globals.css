@@ -3,7 +3,6 @@
 @plugin 'tailwindcss-animate';
 
 @custom-variant dark (&:is(.dark *));
-@import '../components/Footer/index.module.scss';
 
 @theme {
   --color-light-green: #36a676;
@@ -128,6 +127,6 @@ body {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground flex flex-col min-h-screen m-0;
   }
 }

@@ -12,6 +12,6 @@ export interface Category {
 }
 
 export const GetCategories = async (): Promise<Category[]> => {
-  const res = await ky.get(`${API_URL}/categories`).json<{ data: Category[] }>()
+  const res = await ky.get(`categories`).json<{ data: Category[] }>()
   return res.data
 }
