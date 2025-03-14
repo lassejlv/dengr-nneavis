@@ -4,9 +4,12 @@ import { RouterProvider, createRouter } from '@tanstack/react-router'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
+import ErrorPage from './components/Error'
+import NotFound from './components/NotFound'
+import LoadigPage from './components/LoadigPage'
 
 // Create a new router instance
-const router = createRouter({ routeTree })
+const router = createRouter({ routeTree, defaultErrorComponent: ErrorPage, defaultNotFoundComponent: NotFound, defaultPendingComponent: LoadigPage })
 
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {

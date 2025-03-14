@@ -22,7 +22,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className='shadow-md fixed top-0 left-0 right-0 bg-white'>
+      <nav className='shadow-md bg-white'>
         <div className='container mx-auto flex items-center justify-between p-2'>
           <NavbarLogo />
 
@@ -44,7 +44,9 @@ export default function Navbar() {
               </div>
             )}
 
-            <Button variant='lightGreen'>opret annonce</Button>
+            <Link to='/opret'>
+              <Button variant='lightGreen'>Opret annonce</Button>
+            </Link>
 
             <div className='flex items-center space-x-6 ml-4'>
               <button>

@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
 import ky from '@/lib/ky'
 import toast from 'react-hot-toast'
+import { InputField } from '@/types/InputField'
 
 const RegisterSchema = z.object({
   email: z.string().email().max(50),
@@ -25,48 +26,55 @@ export const Route = createFileRoute('/register')({
   component: RouteComponent,
 })
 
-const fields = [
+const fields: InputField[] = [
   {
     name: 'email',
     label: 'Email',
     type: 'email',
     placeholder: 'Din email',
+    required: true,
   },
   {
     name: 'password',
     label: 'Password',
     type: 'password',
     placeholder: 'Din password',
+    required: true,
   },
   {
     name: 'firstname',
     label: 'Fornavn',
     type: 'text',
     placeholder: 'Dit fornavn',
+    required: true,
   },
   {
     name: 'lastname',
     label: 'Efternavn',
     type: 'text',
     placeholder: 'Dit efternavn',
+    required: true,
   },
   {
     name: 'address',
     label: 'Adresse',
     type: 'text',
     placeholder: 'Din adresse',
+    required: true,
   },
   {
     name: 'zipcode',
     label: 'Postnummer',
     type: 'text',
     placeholder: 'Dit postnummer',
+    required: true,
   },
   {
     name: 'city',
     label: 'By',
     type: 'text',
     placeholder: 'Din by',
+    required: true,
   },
 ]
 
@@ -75,7 +83,6 @@ function RouteComponent() {
 
   const RegisterMutation = useMutation({
     mutationFn: async (data: RegisterSchema) => {
-      // body is url encoded
       const { data: userData, success } = await RegisterSchema.safeParseAsync(data)
       if (!success) throw new Error('Invalid data')
 
@@ -135,7 +142,7 @@ function RouteComponent() {
           </div>
 
           <div className='flex items-center mt-3 mb-4'>
-            <Checkbox id='terms' className='mr-2' />
+            <Checkbox id='terms' className='mr-2' required />
             <label htmlFor='terms' className='text-sm'>
               Jeg har læst og forstået de{' '}
               <a href='#' className='text-green-600'>

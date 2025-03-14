@@ -12,9 +12,12 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as RegisterImport } from './routes/register'
-import { Route as MeImport } from './routes/me'
+import { Route as OpretImport } from './routes/opret'
 import { Route as LoginImport } from './routes/login'
 import { Route as IndexImport } from './routes/index'
+import { Route as ProductsIndexImport } from './routes/products/index'
+import { Route as MeIndexImport } from './routes/me/index'
+import { Route as ProductsViewSlugImport } from './routes/products/view/$slug'
 
 // Create/Update Routes
 
@@ -24,9 +27,9 @@ const RegisterRoute = RegisterImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const MeRoute = MeImport.update({
-  id: '/me',
-  path: '/me',
+const OpretRoute = OpretImport.update({
+  id: '/opret',
+  path: '/opret',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,6 +42,24 @@ const LoginRoute = LoginImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProductsIndexRoute = ProductsIndexImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const MeIndexRoute = MeIndexImport.update({
+  id: '/me/',
+  path: '/me/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProductsViewSlugRoute = ProductsViewSlugImport.update({
+  id: '/products/view/$slug',
+  path: '/products/view/$slug',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,11 +81,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
-    '/me': {
-      id: '/me'
-      path: '/me'
-      fullPath: '/me'
-      preLoaderRoute: typeof MeImport
+    '/opret': {
+      id: '/opret'
+      path: '/opret'
+      fullPath: '/opret'
+      preLoaderRoute: typeof OpretImport
       parentRoute: typeof rootRoute
     }
     '/register': {
@@ -72,6 +93,27 @@ declare module '@tanstack/react-router' {
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof RegisterImport
+      parentRoute: typeof rootRoute
+    }
+    '/me/': {
+      id: '/me/'
+      path: '/me'
+      fullPath: '/me'
+      preLoaderRoute: typeof MeIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/products/view/$slug': {
+      id: '/products/view/$slug'
+      path: '/products/view/$slug'
+      fullPath: '/products/view/$slug'
+      preLoaderRoute: typeof ProductsViewSlugImport
       parentRoute: typeof rootRoute
     }
   }
@@ -82,49 +124,88 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/me': typeof MeRoute
+  '/opret': typeof OpretRoute
   '/register': typeof RegisterRoute
+  '/me': typeof MeIndexRoute
+  '/products': typeof ProductsIndexRoute
+  '/products/view/$slug': typeof ProductsViewSlugRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/me': typeof MeRoute
+  '/opret': typeof OpretRoute
   '/register': typeof RegisterRoute
+  '/me': typeof MeIndexRoute
+  '/products': typeof ProductsIndexRoute
+  '/products/view/$slug': typeof ProductsViewSlugRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/me': typeof MeRoute
+  '/opret': typeof OpretRoute
   '/register': typeof RegisterRoute
+  '/me/': typeof MeIndexRoute
+  '/products/': typeof ProductsIndexRoute
+  '/products/view/$slug': typeof ProductsViewSlugRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/me' | '/register'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/opret'
+    | '/register'
+    | '/me'
+    | '/products'
+    | '/products/view/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/me' | '/register'
-  id: '__root__' | '/' | '/login' | '/me' | '/register'
+  to:
+    | '/'
+    | '/login'
+    | '/opret'
+    | '/register'
+    | '/me'
+    | '/products'
+    | '/products/view/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/opret'
+    | '/register'
+    | '/me/'
+    | '/products/'
+    | '/products/view/$slug'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
-  MeRoute: typeof MeRoute
+  OpretRoute: typeof OpretRoute
   RegisterRoute: typeof RegisterRoute
+  MeIndexRoute: typeof MeIndexRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
+  ProductsViewSlugRoute: typeof ProductsViewSlugRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
-  MeRoute: MeRoute,
+  OpretRoute: OpretRoute,
   RegisterRoute: RegisterRoute,
+  MeIndexRoute: MeIndexRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
+  ProductsViewSlugRoute: ProductsViewSlugRoute,
 }
 
-export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>()
+export const routeTree = rootRoute
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 
 /* ROUTE_MANIFEST_START
 {
@@ -134,8 +215,11 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
       "children": [
         "/",
         "/login",
-        "/me",
-        "/register"
+        "/opret",
+        "/register",
+        "/me/",
+        "/products/",
+        "/products/view/$slug"
       ]
     },
     "/": {
@@ -144,11 +228,20 @@ export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileT
     "/login": {
       "filePath": "login.tsx"
     },
-    "/me": {
-      "filePath": "me.tsx"
+    "/opret": {
+      "filePath": "opret.tsx"
     },
     "/register": {
       "filePath": "register.tsx"
+    },
+    "/me/": {
+      "filePath": "me/index.tsx"
+    },
+    "/products/": {
+      "filePath": "products/index.tsx"
+    },
+    "/products/view/$slug": {
+      "filePath": "products/view/$slug.tsx"
     }
   }
 }
