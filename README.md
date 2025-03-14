@@ -1,54 +1,43 @@
-# React + TypeScript + Vite
+# Den Grønne Avis - Svendeprøve Rapport
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Projektinformation
 
-Currently, two official plugins are available:
+- **Opgavens navn:** Homelands
+- **Navn:** Lasse Vestergaard
+- **Holdnummer:** H1WE010124
+- **GitHub Repository:** https://github.com/lassejlv/dengr-nneavis
+- **Hosted URL:** https://dengroenneavis.lassejlv.dk
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 1. Vurdering af egen indsats
 
-## Expanding the ESLint configuration
+Jeg har præsteret tilfredsstillende i forhold til projektets udfordringer og tidsmæssige begrænsninger. På trods af forskellige personlige udfordringer, herunder at jeg har mistet min hund, har jeg formået at levere et solidt resultat. Projektet står som en personlig sejr, hvor jeg har demonstreret evnen til at håndtere udfordringer og stadig levere kvalitet.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 2. Argumentation for teknologivalg
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Projektet er bygget med følgende teknologier:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **React:** Moderne frontend framework med stor community support
+- **TypeScript:** Tilføjer type-sikkerhed og forbedrer udviklingsoplevelsen
+- **TanStack Query/Router:** Effektiv state management og routing løsning
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Disse teknologier er valgt på grund af:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+- Fremragende developer experience (DX)
+- Type-safety gennem TypeScript
+- Stor community opbakning og udbredt anvendelse i industrien
+- Personlig erfaring og præference i daglig udvikling
+
+## 3. Redegørelse for kodestruktur
+
+Projektets struktur er organiseret i følgende hovedkomponenter:
+
+```jsx
+src/
+├── components/     // Genbrugelige komponenter
+│   └── ui/         // Genbrugelige komponenter for UI over hele hjemmesiden
+├── routes/         // Side-specifikke komponenter
+├── lib/           // Utilities og hjælpefunktioner
+│   ├── api.ts
+└── styles
+    ├── globals.css // All globale styles
 ```
