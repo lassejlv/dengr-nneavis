@@ -2,7 +2,7 @@
 
 ## Projektinformation
 
-- **Opgavens navn:** Homelands
+- **Opgavens navn:** Den Grønne Avis
 - **Navn:** Lasse Vestergaard
 - **Holdnummer:** H1WE010124
 - **GitHub Repository:** https://github.com/lassejlv/dengr-nneavis
