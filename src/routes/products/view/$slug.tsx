@@ -1,5 +1,5 @@
 import { GetCategories, GetProductBySlug } from '@/lib/api'
-import { createFileRoute, notFound, useRouter } from '@tanstack/react-router'
+import { createFileRoute, Link, notFound, useRouter } from '@tanstack/react-router'
 import { GetProductCommentsById } from '@/lib/api'
 import { Separator } from '@/components/ui/separator'
 import { Card, CardContent } from '@/components/ui/card'
@@ -110,7 +110,9 @@ function RouteComponent() {
                       category.id === product.category_id ? 'font-bold text-[#181818]' : 'font-light text-black'
                     }`}
                   >
-                    {category.name}
+                    <Link to='/products/category/$categorySlug' params={{ categorySlug: category.slug }}>
+                      {category.name}
+                    </Link>
                   </div>
                 ))}
               </div>

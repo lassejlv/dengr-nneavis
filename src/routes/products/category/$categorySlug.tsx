@@ -2,7 +2,7 @@ import { GetCategories, GetProductsByCategory } from '@/lib/api'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
 
 export const Route = createFileRoute('/products/category/$categorySlug')({
   component: RouteComponent,
@@ -75,6 +75,11 @@ function RouteComponent() {
                       </div>
                     </div>
                   </CardContent>
+                  <CardFooter>
+                    <Link to='/products/view/$slug' params={{ slug: product.slug }}>
+                      <Button>Se produkt</Button>
+                    </Link>
+                  </CardFooter>
                 </Card>
               ))}
             </div>

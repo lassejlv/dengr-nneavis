@@ -12,6 +12,10 @@ export interface User {
   id: string
   firstname: string
   lastname: string
+  email: string
+  address: string
+  zipcode: string
+  city: string
 }
 
 const LoginSchema = z.object({
