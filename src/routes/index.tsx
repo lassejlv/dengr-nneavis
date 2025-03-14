@@ -60,10 +60,12 @@ function RouteComponent() {
           <div className='grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))]'>
             {categories.slice(0, 6).map((category) => (
               <div key={category.id} className='relative w-[150px] h-[150px]'>
-                <div className='w-full h-full bg-cover bg-center' style={{ backgroundImage: `url(${category.category_image})` }} />
-                <div className='absolute top-0 w-full h-[30px] bg-[#00a676] flex items-center justify-center'>
-                  <a className='font-normal text-neutral-100 text-[15px] text-center underline'>{category.name}</a>
-                </div>
+                <Link to='/products/category/$categorySlug' params={{ categorySlug: category.slug }}>
+                  <div className='w-full h-full bg-cover bg-center' style={{ backgroundImage: `url(${category.category_image})` }} />
+                  <div className='absolute top-0 w-full h-[30px] bg-[#00a676] flex items-center justify-center'>
+                    <a className='font-normal text-neutral-100 text-[15px] text-center underline'>{category.name}</a>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>
