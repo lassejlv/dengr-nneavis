@@ -37,6 +37,11 @@ export const GetCategories = async (): Promise<Category[]> => {
   return res.data
 }
 
+export const GetProductsByCategory = async (slug: string): Promise<Product[]> => {
+  const res = await ky.get(`products/category/${slug}`).json<{ data: Product[] }>()
+  return res.data
+}
+
 export const GetProducts = async (): Promise<Product[]> => {
   const res = await ky.get(`products`).json<{ data: Product[] }>()
   return res.data

@@ -19,6 +19,7 @@ function NavbarLogo() {
 export default function Navbar() {
   const categories = useCategories()
   const session = useSession()
+  const navigate = useNavigate()
 
   return (
     <>
@@ -29,13 +30,13 @@ export default function Navbar() {
           <div className='flex items-center space-x-4'>
             {categories.data && !categories.isLoading && !categories.isError && (
               <div className='relative mx-2'>
-                <Select>
+                <Select onValueChange={(value) => navigate({ to: '/products/category/$categorySlug', params: { categorySlug: value } })}>
                   <SelectTrigger className='w-[180px]'>
                     <SelectValue placeholder='Vælg kategori' />
                   </SelectTrigger>
                   <SelectContent>
                     {categories.data.map((category) => (
-                      <SelectItem key={category.id} value={category.name}>
+                      <SelectItem key={category.id} value={category.slug}>
                         {category.name}
                       </SelectItem>
                     ))}

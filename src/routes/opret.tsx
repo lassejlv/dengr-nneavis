@@ -10,7 +10,7 @@ import { GetToken, HandleAuth } from '@/lib/auth'
 import ky from '@/lib/ky'
 import { InputField } from '@/types/InputField'
 import { useMutation } from '@tanstack/react-query'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import toast from 'react-hot-toast'
 import { z } from 'zod'
 
@@ -30,6 +30,9 @@ export const Route = createFileRoute('/opret')({
     const data = await HandleAuth()
     if (!data) throw new Error('Not logged in')
     return { data }
+  },
+  onError: () => {
+    throw redirect({ to: '/login' })
   },
 })
 

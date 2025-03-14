@@ -18,6 +18,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as ProductsIndexImport } from './routes/products/index'
 import { Route as MeIndexImport } from './routes/me/index'
 import { Route as ProductsViewSlugImport } from './routes/products/view/$slug'
+import { Route as ProductsCategoryCategorySlugImport } from './routes/products/category/$categorySlug'
 
 // Create/Update Routes
 
@@ -62,6 +63,13 @@ const ProductsViewSlugRoute = ProductsViewSlugImport.update({
   path: '/products/view/$slug',
   getParentRoute: () => rootRoute,
 } as any)
+
+const ProductsCategoryCategorySlugRoute =
+  ProductsCategoryCategorySlugImport.update({
+    id: '/products/category/$categorySlug',
+    path: '/products/category/$categorySlug',
+    getParentRoute: () => rootRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -109,6 +117,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsIndexImport
       parentRoute: typeof rootRoute
     }
+    '/products/category/$categorySlug': {
+      id: '/products/category/$categorySlug'
+      path: '/products/category/$categorySlug'
+      fullPath: '/products/category/$categorySlug'
+      preLoaderRoute: typeof ProductsCategoryCategorySlugImport
+      parentRoute: typeof rootRoute
+    }
     '/products/view/$slug': {
       id: '/products/view/$slug'
       path: '/products/view/$slug'
@@ -128,6 +143,7 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/me': typeof MeIndexRoute
   '/products': typeof ProductsIndexRoute
+  '/products/category/$categorySlug': typeof ProductsCategoryCategorySlugRoute
   '/products/view/$slug': typeof ProductsViewSlugRoute
 }
 
@@ -138,6 +154,7 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/me': typeof MeIndexRoute
   '/products': typeof ProductsIndexRoute
+  '/products/category/$categorySlug': typeof ProductsCategoryCategorySlugRoute
   '/products/view/$slug': typeof ProductsViewSlugRoute
 }
 
@@ -149,6 +166,7 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/me/': typeof MeIndexRoute
   '/products/': typeof ProductsIndexRoute
+  '/products/category/$categorySlug': typeof ProductsCategoryCategorySlugRoute
   '/products/view/$slug': typeof ProductsViewSlugRoute
 }
 
@@ -161,6 +179,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/me'
     | '/products'
+    | '/products/category/$categorySlug'
     | '/products/view/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -170,6 +189,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/me'
     | '/products'
+    | '/products/category/$categorySlug'
     | '/products/view/$slug'
   id:
     | '__root__'
@@ -179,6 +199,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/me/'
     | '/products/'
+    | '/products/category/$categorySlug'
     | '/products/view/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -190,6 +211,7 @@ export interface RootRouteChildren {
   RegisterRoute: typeof RegisterRoute
   MeIndexRoute: typeof MeIndexRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
+  ProductsCategoryCategorySlugRoute: typeof ProductsCategoryCategorySlugRoute
   ProductsViewSlugRoute: typeof ProductsViewSlugRoute
 }
 
@@ -200,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   RegisterRoute: RegisterRoute,
   MeIndexRoute: MeIndexRoute,
   ProductsIndexRoute: ProductsIndexRoute,
+  ProductsCategoryCategorySlugRoute: ProductsCategoryCategorySlugRoute,
   ProductsViewSlugRoute: ProductsViewSlugRoute,
 }
 
@@ -219,6 +242,7 @@ export const routeTree = rootRoute
         "/register",
         "/me/",
         "/products/",
+        "/products/category/$categorySlug",
         "/products/view/$slug"
       ]
     },
@@ -239,6 +263,9 @@ export const routeTree = rootRoute
     },
     "/products/": {
       "filePath": "products/index.tsx"
+    },
+    "/products/category/$categorySlug": {
+      "filePath": "products/category/$categorySlug.tsx"
     },
     "/products/view/$slug": {
       "filePath": "products/view/$slug.tsx"
