@@ -8,6 +8,11 @@
 - **GitHub Repository:** https://github.com/lassejlv/dengr-nneavis
 - **Hosted URL:** https://dengroenneavis.lassejlv.dk
 
+## Koder
+
+Email: info@webudvikler.net
+Password: password
+
 ## 1. Vurdering af egen indsats
 
 Jeg har præsteret tilfredsstillende i forhold til projektets udfordringer og tidsmæssige begrænsninger. På trods af forskellige personlige udfordringer, herunder at jeg har mistet min hund, har jeg formået at levere et solidt resultat. Projektet står som en personlig sejr, hvor jeg har demonstreret evnen til at håndtere udfordringer og stadig levere kvalitet.
